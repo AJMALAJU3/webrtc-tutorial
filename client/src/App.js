@@ -1,11 +1,16 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
 import JoinRoomPage from './JoinRoomPage/JoinRoomPage';
 import RoomPage from './RoomPage/RoomPage';
 import IntroductionPage from './IntroductionPage/IntroductionPage';
+import { connectWithSocketIOServer } from './utils/wss';
 
 function App() {
+
+  useEffect(() => {
+    connectWithSocketIOServer()
+  },[])
   return (
     <Router>
       <Routes>
