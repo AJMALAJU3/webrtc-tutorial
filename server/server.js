@@ -7,7 +7,10 @@ const socketIO = require('socket.io');
 const PORT = process.env.PORT || 5002;
 const app = express();
 const server = http.createServer(app);
-app.use(cors());
+app.use(cors({
+  origin: 'https://webrtc-tutorial-mauve.vercel.app', // Frontend domain
+  methods: ['GET', 'POST']
+}))
 
 let connectedUsers = [];
 let rooms = [];
