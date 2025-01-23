@@ -7,10 +7,14 @@ const socketIO = require('socket.io');
 const PORT = process.env.PORT || 5002;
 const app = express();
 const server = http.createServer(app);
+
+// Fix CORS to allow requests from your frontend domain
 app.use(cors({
   origin: 'https://webrtc-tutorial-mauve.vercel.app', // Frontend domain
-  methods: ['GET', 'POST']
-}))
+  methods: ['GET', 'POST'],
+  allowedHeaders: ['Content-Type'], // Optional, allow custom headers if needed
+  credentials: true // Allow cookies to be sent (if required)
+}));
 
 let connectedUsers = [];
 let rooms = [];
@@ -29,8 +33,10 @@ app.get('/api/room-exists/:roomId', (req, res) => {
 
 const io = socketIO(server, {
     cors: {
-        origin: 'https://webrtc-tutorial-mauve.vercel.app',
-        methods: ['GET', 'POST']
+        origin: 'https://webrtc-tutorial-mauve.vercel.app', // Frontend domain
+        methods: ['GET', 'POST'],
+        allowedHeaders: ['Content-Type'],
+        credentials: true
     }
 });
 
