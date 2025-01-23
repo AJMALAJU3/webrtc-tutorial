@@ -10,11 +10,11 @@ const server = http.createServer(app);
 
 // Fix CORS to allow requests from your frontend domain
 app.use(cors({
-  origin: 'https://webrtc-tutorial-mauve.vercel.app', // Frontend domain
+  origin: ['https://webrtc-tutorial-mauve.vercel.app', 'https://webrtc-trial.vercel.app'],
   methods: ['GET', 'POST'],
-  allowedHeaders: ['Content-Type'], // Optional, allow custom headers if needed
-  credentials: true // Allow cookies to be sent (if required)
+  credentials: true
 }));
+
 
 let connectedUsers = [];
 let rooms = [];
@@ -32,11 +32,14 @@ app.get('/api/room-exists/:roomId', (req, res) => {
 });
 
 const io = socketIO(server, {
-    cors: {
-        origin: '*',
-        methods: ['GET', 'POST']
-    }
+  cors: {
+    origin: 'https://webrtc-trial.vercel.app',
+    methods: ['GET', 'POST'],
+    credentials: true
+  },
+  transports: ['websocket', 'polling'] // Allow fallback to polling
 });
+
 
 io.on('connection', (socket) => {
     console.log('User connected:', socket.id);
