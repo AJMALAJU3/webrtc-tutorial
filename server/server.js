@@ -33,10 +33,8 @@ app.get('/api/room-exists/:roomId', (req, res) => {
 
 const io = socketIO(server, {
     cors: {
-        origin: 'https://webrtc-tutorial-mauve.vercel.app', // Frontend domain
-        methods: ['GET', 'POST'],
-        allowedHeaders: ['Content-Type'],
-        credentials: true
+        origin: '*',
+        methods: ['GET', 'POST']
     }
 });
 
