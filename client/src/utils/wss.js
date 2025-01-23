@@ -3,7 +3,7 @@ import store from '../store/store';
 import { setParticipants, setRoomId } from '../store/actions';
 import * as webRTCHandler from './webRTCHandler';
 
-const SERVER = 'https://webrtc-trial.vercel.app/api';
+const SERVER = 'https://webrtc-trial.vercel.app';
 
 let socket = null;
 
