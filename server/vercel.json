@@ -1,6 +1,5 @@
 {
   "version": 2,
-  "name": "mern-crud-backend",
   "builds": [
     {
       "src": "server.js",
