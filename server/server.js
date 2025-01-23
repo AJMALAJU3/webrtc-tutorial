@@ -26,7 +26,7 @@ app.get('/api/room-exists/:roomId', (req, res) => {
 
 const io = socketIO(server, {
     cors: {
-        origin: '*',
+        origin: 'https://webrtc-tutorial-mauve.vercel.app',
         methods: ['GET', 'POST']
     }
 });
